@@ -2,6 +2,20 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Recursion {
+//    递归求斐波那契数列的第 N 项
+//    1 1 2 3 5 8 13n = n - 1项 + n - 2项
+
+    public static int fib(int n) {
+        if(n == 1 || n == 2) {
+            return 1;
+        }else {
+            return fib(n - 1) + fib(n - 2);
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("斐波那契数列第7项为" + fib(7));
+    }
 //    写一个递归方法，输入一个非负整数，返回组成它的数字之和
 //    1234 = 1+2+3+4
     public static int add(int a) {
@@ -13,7 +27,7 @@ public class Recursion {
     }
 
 
-    public static void main(String[] args) {
+    public static void main4(String[] args) {
         System.out.println(add(1234));
     }
     //    按顺序打印一个数字的每一位(例如 1234 打印出 1 2 3 4)    （递归）
