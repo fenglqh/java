@@ -91,6 +91,37 @@ public class Test {
      * 如数组：[1,2,3,4,5,6]
      * 调整后可能是：[1, 5, 3, 4, 2, 6]
      */
+    public static void change2(int[] array) {
+//        int left = 0;
+//        int right = array.length -1;
+//        while (left < right) {
+//            while (array[left] % 2 != 0) {
+//                left++;
+//            }
+//            while (array[right] % 2 == 0) {
+//                right--;
+//            }
+//            int temp = array[left];
+//            array[left] = array[right];
+//            array[right] = temp;
+//
+//            }
+        int left = 0;
+        int right = array.length -1;
+        while (left < right) {
+            while (left < right && array[left] % 2 != 0) {
+                left++;
+            }
+            while (left < right && array[right] % 2 == 0) {
+                right--;
+            }
+            int temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+
+        }
+    }
+
     public static void change(int[] array) {
         int left = 0;
         int right = array.length -1;
@@ -110,14 +141,33 @@ public class Test {
                 right++;
             }
         }
-    }
-    public static void main2(String[] args) {
-        int[] array1 = {1,2,3,4,5,6};
-        change(array1);
-        for (int x:array1
-             ) {
-            System.out.print(x + " ");
+    }//错了，当right和left在同一个位置的时候，right会往前跑
+    public static void change1(int[] array) {
+        int left = 0;
+        int right = array.length -1;
+        while (left < right) {
+            if(left < right && array[left] % 2 != 0) {
+                left++;
+            }
+            if (left < right && array[right] % 2 == 0) {
+                right--;
+            }
+            if(array[left] % 2 == 0 && array[right] % 2 != 0) {
+                int temp = 0;
+                temp = array[left];
+                array[left] = array[right];
+                array[right] = temp;
+                left++;
+                right++;
+            }
         }
+    }//错了，当right和left在同一个位置的时候，right会往前跑
+    public static void main(String[] args) {
+        int[] array1 = {1,5,3,4,2,6};
+//        change2(array1);
+//        System.out.println(Arrays.toString(array1));
+        change1(array1);
+        System.out.println(Arrays.toString(array1));
     }
     /**
     实现一个方法 transform, 以数组为参数, 循环将数组中的每个元素 乘以 2 ,
