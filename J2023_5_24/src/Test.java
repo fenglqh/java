@@ -2,12 +2,48 @@ import java.util.Arrays;
 
 public class Test {
     /**
+     * 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。
+     * 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
+     * 你可以按任意顺序返回答案。
+     * 示例 1：
+     * 输入：nums = [2,7,11,15], target = 9
+     * 输出：[0,1]
+     * 解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
+     */
+    public static int[] search_sum(int[] nums ,int target) {
+        int[] ret = new int[]{0,0};
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    ret[0] = i;
+                    ret[1] = j;
+                    break;
+                }
+            }
+            if(ret[0] != 0) {
+                break;
+            }
+        }
+        return ret;
+
+    }
+    public static void main5(String[] args) {
+        int[] nums = {22,15,2,3};
+        int target = 25;
+        int[] ret = search_sum(nums, target);
+        if(ret[0] == ret[1]) {
+            System.out.println("查找失败");
+        }else {
+            System.out.println(Arrays.toString(ret));
+        }
+    }
+    /**
      * 给定一个整型数组, 实现冒泡排序(升序排序)
      * 蒙了
      */
     public static void bubble_sort(int[] array) {
         for (int i = 0; i < array.length -1; i++) {
-            for (int j = i; j < array.length -2; j++) {
+            for (int j = 0; j < array.length -2 -i; j++) {
                 if(array[j] > array[j+1]) {
                     int temp = 0;
                     temp = array[j];
@@ -17,7 +53,7 @@ public class Test {
             }
         }
     }
-    public static void main(String[] args) {
+    public static void main4(String[] args) {
         int[] array = {5,3,6,7,3,1,2,0,11};
         bubble_sort(array);
         System.out.println(Arrays.toString(array));
