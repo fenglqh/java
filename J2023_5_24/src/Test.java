@@ -11,7 +11,7 @@ public class Test {
      * 解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
      */
     public static int[] search_sum(int[] nums ,int target) {
-        int[] ret = new int[]{0,0};
+        int[] ret = new int[]{-1,-1};
         for (int i = 0; i < nums.length - 1; i++) {
             for (int j = i + 1; j < nums.length; j++) {
                 if (nums[i] + nums[j] == target) {
@@ -20,7 +20,7 @@ public class Test {
                     break;
                 }
             }
-            if(ret[0] != 0) {
+            if(ret[0] != -1) {
                 break;
             }
         }
@@ -41,9 +41,26 @@ public class Test {
      * 给定一个整型数组, 实现冒泡排序(升序排序)
      * 蒙了
      */
+    public static void bubble_sort1(int[] array) {
+        for (int i = 0; i < array.length -1; i++) {//控制趟数
+            boolean flg = false;
+            for (int j = 0; j < array.length -1 -i; j++) {//减少比较次数
+                if(array[j] > array[j+1]) {
+                    int temp = 0;
+                    temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                    flg = true;
+                }
+            }
+            if(flg == false) {
+                return;
+            }
+        }
+    }//优化后的代码，如果在中途某一趟有序就可以少走几趟
     public static void bubble_sort(int[] array) {
-        for (int i = 0; i < array.length -1; i++) {
-            for (int j = 0; j < array.length -2 -i; j++) {
+        for (int i = 0; i < array.length -1; i++) {//控制趟数
+            for (int j = 0; j < array.length -1 -i; j++) {//减少比较次数
                 if(array[j] > array[j+1]) {
                     int temp = 0;
                     temp = array[j];
@@ -54,13 +71,37 @@ public class Test {
         }
     }
     public static void main4(String[] args) {
-        int[] array = {5,3,6,7,3,1,2,0,11};
-        bubble_sort(array);
+        int[] array = {11,3,6,7,3,1,2,0,-1};
+        long start = System.currentTimeMillis();
+        bubble_sort1(array);
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
         System.out.println(Arrays.toString(array));
     }
     /**
      * 给定一个有序整型数组, 实现二分查找
      */
+    public static int binary_Search1(int num, int[] array) {
+        int left = 0;
+        int right = array.length - 1;
+        int mid = 0;
+        while (left <= right) {
+            mid = left + (right-left) / 2;
+            if(array[mid] > num) {
+                right = mid - 1;
+            } else if (array[mid] < num) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+    }
+    public static void main3(String[] args) {
+        int[] array = {1,2,3,4,5,7,9,23,24,45};
+        int ret = binary_Search(10, array);
+        System.out.println(ret);
+    }
     public static int binary_Search(int num, int[] array) {
         int left = 0;
         int right = array.length - 1;
@@ -68,7 +109,7 @@ public class Test {
         while (left <= right) {
             mid = left + (right - left) / 2;
             if(array[mid] > num) {
-                right = mid;
+                right = mid - 1;
             } else if (array[mid] < num) {
                 left = mid + 1;
             } else {
@@ -80,10 +121,10 @@ public class Test {
         } else {
             return mid;
         }
-    }
-    public static void main3(String[] args) {
+    }//10进入死循环
+    public static void main6(String[] args) {
         int[] array = {1,2,3,4,5,7,9,23,24,45};
-        int ret = binary_Search(45, array);
+        int ret = binary_Search(48, array);
         System.out.println(ret);
     }
     /**
@@ -162,7 +203,7 @@ public class Test {
             }
         }
     }//错了，当right和left在同一个位置的时候，right会往前跑
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         int[] array1 = {1,5,3,4,2,6};
 //        change2(array1);
 //        System.out.println(Arrays.toString(array1));
