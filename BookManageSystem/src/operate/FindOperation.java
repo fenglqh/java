@@ -1,5 +1,6 @@
 package operate;
 
+<<<<<<< HEAD
 import book.Book;
 import book.BookList;
 
@@ -21,4 +22,7 @@ public class FindOperation implements IOperate{
         }
         System.out.println("不存在该图书！");
     }
+=======
+public class FindOperation {
+>>>>>>> 1057ee93a5e6272685f59534bfed6a77e5098a34
 }

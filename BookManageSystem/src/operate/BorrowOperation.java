@@ -1,5 +1,6 @@
 package operate;
 
+<<<<<<< HEAD
 import book.Book;
 import book.BookList;
 
@@ -23,4 +24,7 @@ public class BorrowOperation implements IOperate{
         }
         System.out.println("图书不存在或者已经被借走！");
     }
+=======
+public class BorrowOperation {
+>>>>>>> 1057ee93a5e6272685f59534bfed6a77e5098a34
 }

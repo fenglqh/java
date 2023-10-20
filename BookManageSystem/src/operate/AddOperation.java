@@ -1,5 +1,6 @@
 package operate;
 
+<<<<<<< HEAD
 import book.Book;
 import book.BookList;
 
@@ -28,4 +29,12 @@ public class AddOperation implements IOperate{
         bookList.setUsedSize(nowpos+1);
     }
 
+=======
+import book.BookList;
+
+public class AddOperation implements IOperate{
+    public void work(BookList bookList) {
+        System.out.println("增加");
+    }
+>>>>>>> 1057ee93a5e6272685f59534bfed6a77e5098a34
 }

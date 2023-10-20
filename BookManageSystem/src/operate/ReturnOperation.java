@@ -1,5 +1,6 @@
 package operate;
 
+<<<<<<< HEAD
 import book.Book;
 import book.BookList;
 
@@ -25,4 +26,7 @@ public class ReturnOperation implements IOperate{
         System.out.println("书名写错了！");
 
     }
+=======
+public class ReturnOperation {
+>>>>>>> 1057ee93a5e6272685f59534bfed6a77e5098a34
 }
