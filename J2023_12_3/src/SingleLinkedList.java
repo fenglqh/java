@@ -2,8 +2,8 @@
 public class SingleLinkedList {
 
     static  class  ListNode {
-        private int val;//值域
-        private ListNode next;//后继
+        public int val;//值域
+        public ListNode next;//后继
         public ListNode(int val) {
             this.val = val;
         }
@@ -12,7 +12,7 @@ public class SingleLinkedList {
         }
     }
 
-    private ListNode head;
+    public ListNode head;
 
     public SingleLinkedList() {
 
@@ -106,6 +106,23 @@ public class SingleLinkedList {
     }
     //删除所有值为key的节点
     public void removeAllKey(int key){
+        if (head == null) {
+            return;
+        }
+        ListNode prev = head;
+        ListNode cur = head.next;
+        while (cur != null) {
+            if (cur.val == key) {
+                prev.next = cur.next;
+                cur = cur.next;
+            } else {
+                cur = cur.next;
+                prev = prev.next;
+            }
+        }
+        if (head.val == key) {
+            head = head.next;
+        }
 
     }
     //得到单链表的长度
@@ -131,5 +148,72 @@ public class SingleLinkedList {
     public void clear(){
         this.head = null;
     }
+
+//    输出链表中的倒数第k个节点
+    public ListNode FindKthToTail(int k) {
+        if(head == null) {
+            return null;
+        }
+        ListNode cur = head;
+        ListNode curNext = cur;
+        if (k == 0) {
+            return null;
+        }
+
+        while (k - 1 > 0) {
+            if (curNext.next == null) {
+                return null;
+            }
+            curNext = curNext.next;
+            k--;
+        }
+
+        while (curNext.next != null) {
+            curNext = curNext.next;
+            cur = cur.next;
+        }
+        return cur;
+    }
+
+    //判断是不是回文
+//    public boolean chkPalindrome() {
+//        if (head == null) {
+//            return false;
+//        }
+//        // write code here
+//        ListNode prev = head;
+//        ListNode cur = head;
+//
+//        int len = size()/2;
+//        //找中间节点
+//        while (len > 0) {
+//            cur = cur.next;
+//            len--;
+//        }
+//        ListNode mid = cur;
+//        ListNode curNext = cur.next;
+//        //头插
+//        while (curNext != null) {
+//            cur = curNext;
+//            curNext = curNext.next;
+//            cur.next = mid;
+//            mid = mid.next;
+//        }
+//        //
+//        while (prev != cur && prev.next != cur) {
+//            if (prev.val != cur.val) {
+//                return false;
+//            }
+//            prev = prev.next;
+//            cur = cur.next;
+//        }
+//        if (prev.val != cur.val) {
+//            return false;
+//        }
+//        return true;
+//
+//
+//
+//    }
 
 }
