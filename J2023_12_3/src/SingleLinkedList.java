@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 // 1、无头单向非循环链表实现
 public class SingleLinkedList {
 
@@ -175,6 +178,36 @@ public class SingleLinkedList {
         return cur;
     }
 
+    //找链表的中间节点
+    public ListNode middleNode() {
+        if (head == null) {
+            return null;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast!= null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    //反转链表
+    public ListNode reverseList() {
+        if (head == null) {
+            return null;
+        }
+        ListNode cur = head.next;
+        head.next = null;
+        ListNode curNext = cur;
+        while (curNext != null) {
+            curNext = cur.next;
+            cur.next = head;
+            head = cur;
+            cur = curNext;
+
+        }
+        return head;
+    }
     //判断是不是回文
 //    public boolean chkPalindrome() {
 //        if (head == null) {
@@ -215,5 +248,10 @@ public class SingleLinkedList {
 //
 //
 //    }
+
+
+
+
+
 
 }

@@ -1,6 +1,27 @@
 public class Main {
-
     public static void main(String[] args) {
+        SingleLinkedList mySingleList  = new SingleLinkedList();
+        mySingleList.addFirst(1);
+        mySingleList.addFirst(2);
+        mySingleList.addFirst(3);
+        mySingleList.addFirst(4);
+
+        mySingleList.display();
+        mySingleList.reverseList();
+        mySingleList.display();
+
+    }
+
+    public static void main3(String[] args) {
+        SingleLinkedList mySingleList  = new SingleLinkedList();
+        mySingleList.addFirst(1);
+
+        mySingleList.display();
+        SingleLinkedList.ListNode ret = mySingleList.middleNode();
+        System.out.println(ret.val);
+    }
+
+    public static void main2(String[] args) {
         SingleLinkedList mySingleList  = new SingleLinkedList();
         mySingleList.addFirst(1);
         mySingleList.addFirst(2);
