@@ -1,14 +1,35 @@
 public class Main {
     public static void main(String[] args) {
+        MyLinkedList myLinkedList = new MyLinkedList();
+        myLinkedList.addLast(0);
+        myLinkedList.addLast(1);
+        myLinkedList.addLast(2);
+        myLinkedList.addLast(3);
+        myLinkedList.display();
+        myLinkedList.add(3,5);
+//        myLinkedList.add(1,6);
+//        myLinkedList.add(2,7);
+//        myLinkedList.add(3,8);
+//        myLinkedList.add(4,9);
+        myLinkedList.display();
+        System.out.println(myLinkedList.size());
+    }
+
+    public static void main4(String[] args) {
         SingleLinkedList mySingleList  = new SingleLinkedList();
         mySingleList.addFirst(1);
         mySingleList.addFirst(2);
         mySingleList.addFirst(3);
         mySingleList.addFirst(4);
 
+        mySingleList.addFirst(3);
+        mySingleList.addFirst(2);
+        mySingleList.addFirst(1);
+
         mySingleList.display();
-        mySingleList.reverseList();
-        mySingleList.display();
+        boolean t = mySingleList.chkPalindrome();
+//        mySingleList.reverseList();
+        System.out.println(t);
 
     }
 

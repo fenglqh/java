@@ -46,7 +46,7 @@ public class SingleLinkedList {
         return index >= 0 && index <= size();
     }
     //任意位置插入,第一个数据节点为0号下标
-    public void addIndex(int index,int data){
+    public void add(int index,int data){
         if (!addIndex(index)) {
             throw new IndexOutOfBoundException("下标非法！");
         }
@@ -249,7 +249,39 @@ public class SingleLinkedList {
 //
 //    }
 
+//判断是不是回文
+    public boolean chkPalindrome() {
+        if (head == null) {
+            return false;
+        }
+    //找到要逆转的中间节点
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        //挨个进行头插
+        ListNode cur = slow.next;
+        ListNode curNext = cur;
+        while (curNext != null) {
+            curNext = curNext.next;
+            cur.next = slow;
+            slow = cur;
+            cur = curNext;
 
+        }
+        //进行比较
+
+        while (head != slow && head.next != slow ) {
+            if (head.val != slow.val) {
+                return false;
+            }
+            slow = slow.next;
+            head = head.next;
+        }
+        return true;
+    }
 
 
 

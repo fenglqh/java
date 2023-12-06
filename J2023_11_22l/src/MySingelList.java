@@ -126,35 +126,38 @@ public class MySingelList {
             return;
         }
         ListNode cur = head;
-        while (cur.next != null) {
-            if (cur.next.val != key) {
-                cur = cur.next;
-            }else {
-                break;
-            }
-        }
-        if(cur.val != key) {
-            System.out.println("输入值不存在！");
-            return;
-        }
         ListNode curNext = cur.next;
-        cur.next = curNext.next;
-        curNext = null;
+        while (curNext != null) {
+            if (curNext.val == key) {
+                cur.next = curNext.next;
+                return;
+            }
+            curNext = curNext.next;
+            cur = cur.next;
+        }
+
     }
 
     //删除所有值为key的节点
     public void removeAllkey(int key) {
-        ListNode cur = head;
-        ListNode curNext = cur.next;
-        while (curNext != null) {
-            if (curNext.val == key) {
-                curNext = curNext.next;
-            } else {
-                cur.next = curNext;
-                cur = curNext;
-            }
+        if (head == null) {
+            return;
         }
-
+        ListNode prev = head;
+        ListNode cur = prev.next;
+        while (cur != null) {
+            if(cur.val == key) {
+                prev.next = cur.next;
+//                cur = cur.next;
+            }else {
+                prev = prev.next;
+//                cur = cur.next;
+            }
+            cur = cur.next;
+        }
+        if (head.val == key) {
+            head = head.next;
+        }
     }
 
     //得到单链表的长度
@@ -164,14 +167,10 @@ public class MySingelList {
     }
 
     public void clear() {
-
+        head = null;
     }
 
 
-    //反转链表
-    public ListNode reverseList () {
-        return  null;
-    }
 
     //打印单链表
     public void display() {
@@ -199,5 +198,10 @@ public class MySingelList {
         }
         System.out.println("");
     }
+//    用链表实现冒泡排序
+    public void buddle_soft(ListNode node) {
 
+    }
+
+//
 }
