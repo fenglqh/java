@@ -1,16 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
+
     public static void main(String[] args) {
+        MyLinkedList myLinkedList = new MyLinkedList();
+        myLinkedList.addLast(1);
+
+
+        myLinkedList.display();
+        myLinkedList.removeAllKey(1);
+        myLinkedList.display();
+        boolean ret = myLinkedList.contains(1);
+        System.out.println(ret);
+    }
+    public static void main5(String[] args) {
         MyLinkedList myLinkedList = new MyLinkedList();
         myLinkedList.addLast(0);
         myLinkedList.addLast(1);
         myLinkedList.addLast(2);
         myLinkedList.addLast(3);
         myLinkedList.display();
-        myLinkedList.add(3,5);
+        myLinkedList.clear();
+//        myLinkedList.add(3,5);
 //        myLinkedList.add(1,6);
 //        myLinkedList.add(2,7);
 //        myLinkedList.add(3,8);
 //        myLinkedList.add(4,9);
+
         myLinkedList.display();
         System.out.println(myLinkedList.size());
     }

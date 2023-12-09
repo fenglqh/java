@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyLinkedList {
     // 2、无头双向链表实现
     static class ListNode{
@@ -20,6 +23,7 @@ public class MyLinkedList {
     public MyLinkedList(int val){
         head = new ListNode(val);
     }
+
     public MyLinkedList() {
 
     }
@@ -102,18 +106,81 @@ public class MyLinkedList {
         cur.prev = newNode;
 
     }
+
     //查找是否包含关键字key是否在单链表当中
     public boolean contains(int key){
-        return true;
+        ListNode cur = head;
+        while (cur != null) {
+            if (cur.val == key) {
+                return true;
+            }
+            cur = cur.next;
+        }
+        return false;
     };
+
     //删除第一次出现关键字为key的节点
     public void remove(int key){
+        if (head == null) {
+            return;
+        }
+        //删除头节点单独处理
+        if (head.val == key) {
+            if (head.next != null) {
+                head.next.prev = null;
+            }
+            head = head.next;
+            return;
+        }
+
+        ListNode cur = head.next;
+        while (cur != null) {
+            if (cur.val == key) {
+                //尾结点单独处理
+                if (cur.next == null) {
+                    cur.prev.next = null;
+                    return;
+                }
+                cur.prev.next = cur.next;
+                cur.next.prev = cur.prev;
+                return;
+            }
+            cur = cur.next;
+        }
 
     };
+
     //删除所有值为key的节点
-    public void removeAllKey(int key){
+    public void removeAllKey(int key) {
 
-    };
+        if (head == null) {
+            return;
+        }
+
+        ListNode cur = head.next;
+        while (cur != null) {
+            if (cur.val == key) {
+                //尾结点单独处理
+                if (cur.next == null) {
+                    cur.prev.next = null;
+                    break;
+                }
+                cur.prev.next = cur.next;
+                cur.next.prev = cur.prev;
+
+            }
+            cur = cur.next;
+        }
+        //删除头节点单独处理
+        if (head.val == key) {
+            if (head.next != null) {
+                head.next.prev = null;
+            }
+            head = head.next;
+        }
+    }
+
+
     //得到单链表的长度
     public int size(){
     int count = 0;
@@ -124,6 +191,8 @@ public class MyLinkedList {
     }
     return count;
     };
+
+    //打印
     public void display(){
         ListNode cur = head;
         while (cur != null) {
@@ -132,8 +201,29 @@ public class MyLinkedList {
         }
         System.out.println();
     };
-    public void clear(){
 
+    //从指定位置打印
+    public void display(ListNode node) {
+        ListNode cur = node;
+        while (cur != null) {
+            System.out.print(cur.val + " " );
+            cur = cur.next;
+        }
+        System.out.println();
+    }
+
+
+    //清空列表，当一个节点不被引用的时候就会自动被回收
+    public void clear(){
+        ListNode cur = head;
+        ListNode curNode = cur;
+        while (curNode != null) {
+            curNode = cur.next;
+            cur.prev = null;
+            cur.next = null;
+            cur = curNode;
+        }
+        head = null;
     };
 
 }
