@@ -147,6 +147,15 @@ public class SingleLinkedList {
         }
         System.out.println();
     }
+    public void display(ListNode newNode) {
+        ListNode cur = newNode;
+        while (cur != null) {
+            System.out.print(cur.val + "　");
+            cur = cur.next;
+        }
+        System.out.println();
+
+    }
 
     public void clear(){
         this.head = null;

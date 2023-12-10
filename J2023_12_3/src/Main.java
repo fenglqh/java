@@ -2,8 +2,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+//    判断两个链表是否相交
+//    public SingleLinkedList.ListNode getIntersectionNode(SingleLinkedList.ListNode headA, SingleLinkedList.ListNode headB) {
+//
+//    }
+
+
+
+//现有一链表的头指针 ListNode* pHead，给一定值x，
+// 编写一段代码将所有小于x的结点排在其余结点之前，且不能改变原来的数据顺序，返回重新排列后的链表的头指针。
+    public static SingleLinkedList.ListNode partition(SingleLinkedList.ListNode pHead, int x) {
+        // write code here
+        SingleLinkedList.ListNode newNode1 = new SingleLinkedList.ListNode();
+        SingleLinkedList.ListNode newNode2 = new SingleLinkedList.ListNode();
+
+        SingleLinkedList.ListNode cur = pHead;
+        SingleLinkedList.ListNode cur1 = newNode1;
+        SingleLinkedList.ListNode cur2 = newNode2;
+        while (cur != null) {
+            if (cur.val < x) {
+                cur1.next = cur;
+                cur1 = cur1.next;
+            } else {
+                cur2.next = cur;
+                cur2 = cur2.next;
+            }
+            cur = cur.next;
+        }
+        cur2.next = null;
+        cur1.next = newNode2.next;
+        return newNode1.next;
+    }
 
     public static void main(String[] args) {
+        SingleLinkedList mySingleList  = new SingleLinkedList();
+        mySingleList.addFirst(6);
+        mySingleList.addFirst(2);
+        mySingleList.addFirst(15);
+        mySingleList.addFirst(8);
+
+        mySingleList.display();
+        SingleLinkedList.ListNode ret = partition(mySingleList.head,9);
+        mySingleList.display(ret);
+
+
+    }
+
+
+
+
+
+
+
+    public static void main6(String[] args) {
         MyLinkedList myLinkedList = new MyLinkedList();
         myLinkedList.addLast(1);
 
