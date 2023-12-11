@@ -71,32 +71,23 @@ public class oj {
 //栈的弹出压入
     public static boolean IsPopOrder (int[] pushV, int[] popV) {
         // write code here
+        if (pushV == null) {
+            return false;
+        }
+        if (popV == null) {
+            return false;
+        }
         Stack<Integer> stack = new Stack<>();
-        int i = 0;
+
         int j = 0;
-        while(j < popV.length) {
-            if(i < pushV.length) {
-                while(i <popV.length && pushV[i] != popV[j]  ) {
-
-                    stack.push(pushV[i]);
-                    i++;
-
-                }
-                if (i >= pushV.length) {
-                    return false;
-                }
-                i++;
-                j++;
-                continue;
-            }
-            if(stack.peek() == popV[j]) {
+        for (int i = 0; i < pushV.length ; i++) {
+            stack.push(pushV[i]);
+            while (j < popV.length && !stack.empty() &&  stack.peek().equals(popV[j])) {
                 stack.pop();
                 j++;
             }
-
         }
-
-        return true;
+        return stack.empty();
     }
     public static void main(String[] args) {
         int[] pushV = {2,1,0};
