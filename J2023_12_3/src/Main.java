@@ -2,12 +2,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    public static int count(SingleLinkedList.ListNode A) {
+        int count = 0;
+        SingleLinkedList.ListNode cur = A;
+        while(cur != null) {
+            count++;
+            cur = cur.next;
+        }
+        return count;
+    }
 //    判断两个链表是否相交
-//    public SingleLinkedList.ListNode getIntersectionNode(SingleLinkedList.ListNode headA, SingleLinkedList.ListNode headB) {
-//
-//    }
+    public static SingleLinkedList.ListNode getIntersectionNode(SingleLinkedList.ListNode headA, SingleLinkedList.ListNode headB) {
+        int lenl = count(headA);
+        int lens = count(headB);
+        if(lenl - lens < 0) {
+            int temp = lenl;
+            lenl = lens;
+            lens = temp;
+
+            SingleLinkedList.ListNode ret = null;
+            ret = headA;
+            headA = headB;
+            headB = ret;
+        }
+        while(lenl - lens > 0) {
+            headA = headA.next;
+            lenl--;
+        }
+        while(headA != null && headB != null && headA != headB) {
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return headA;
+    }
+
+    public static void main(String[] args) {
+        SingleLinkedList mySingleListA  = new SingleLinkedList();
+        mySingleListA.addLast(2);
+        mySingleListA.addLast(6);
+        mySingleListA.addLast(4);
+        SingleLinkedList mySingleListB  = new SingleLinkedList();
+        mySingleListA.addLast(1);
+        mySingleListA.addLast(5);
+        getIntersectionNode(mySingleListA.head,mySingleListB.head);
 
 
+
+    }
 
 //现有一链表的头指针 ListNode* pHead，给一定值x，
 // 编写一段代码将所有小于x的结点排在其余结点之前，且不能改变原来的数据顺序，返回重新排列后的链表的头指针。
@@ -34,19 +75,7 @@ public class Main {
         return newNode1.next;
     }
 
-    public static void main(String[] args) {
-        SingleLinkedList mySingleList  = new SingleLinkedList();
-        mySingleList.addFirst(6);
-        mySingleList.addFirst(2);
-        mySingleList.addFirst(15);
-        mySingleList.addFirst(8);
 
-        mySingleList.display();
-        SingleLinkedList.ListNode ret = partition(mySingleList.head,9);
-        mySingleList.display(ret);
-
-
-    }
 
 
 
