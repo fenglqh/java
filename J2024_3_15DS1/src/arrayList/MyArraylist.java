@@ -2,6 +2,7 @@ package arrayList;
 
 import exception.PosError;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MyArraylist {
@@ -50,7 +51,6 @@ public class MyArraylist {
     private boolean checkPosInAdd(int pos) throws PosError{
         return pos >= 0 && pos <= this.usedSize;
     }
-
     // 在 pos 位置新增元素
     public void add(int pos, int data) {
 //        1.先判断插入位置合不合法
@@ -64,6 +64,7 @@ public class MyArraylist {
 //        3.在指定位插入，后移其他元素
 //        但是从pos位元素开始移动会覆盖后面未移动元素
 //        所以从后往前移
+//        移动的距离 n - i + 1          0 1 2 3 4 5
         for (int i = this.usedSize-1; i >= pos ; i--) {//i==pos?
             this.elem[i+1] = this.elem[i];
         }
