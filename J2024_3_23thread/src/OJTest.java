@@ -1,8 +1,52 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.PriorityBlockingQueue;
 
 public class OJTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        MyBlockingQueue b = new MyBlockingQueue();
+        Thread t2 = new Thread(() -> {
+            b.offer(1);
+            b.offer(2);
+            b.offer(3);
+            b.offer(4);
+            b.offer(5);
+            b.offer(6);
+        });
+        Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("te");
+            b.poll();
+        });
+        t.start();
+        t2.start();
+        System.out.println("test");
+
+
+
+        t.join();
+        t2.join();
+//        b.offer(1);
+//        b.offer(2);
+//        b.offer(3);
+//        b.offer(4);
+//        b.poll();
+        System.out.println("-----");
+
+    }
+    public static void main4(String[] args) {
+        String s = "abc";
+        List<String> strings = Arrays.asList(s);
+        System.out.println(strings.get(0));
+    }
+    public static void main3(String[] args) {
 //       int[] arr = {3,3,3,1,2,1,1,2,3,3,4};
        int[] arr = {0,1,1,4,3};
         System.out.println(totalFruit(arr));
