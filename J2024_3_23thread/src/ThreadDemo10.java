@@ -17,7 +17,6 @@ public class ThreadDemo10 {
             }
         });
         a++;
-        new Thread()
 
     }
 }
