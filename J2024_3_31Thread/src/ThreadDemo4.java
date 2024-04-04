@@ -4,14 +4,18 @@ public class ThreadDemo4 {
 
     public static void main(String[] args) throws InterruptedException {
         Thread t1 = new Thread(() -> {
+            int count1 = 0;
             for (int i = 0; i < 5000; i++) {
-                count++;
+                count1++;
             }
+            count = count + count1;
         });
         Thread t2 = new Thread(() -> {
+            int count2 = 0;
             for (int i = 0; i < 5000; i++) {
-                count++;
+                count2++;
             }
+            count = count + count2;
         });
         t1.start();
         t2.start();
