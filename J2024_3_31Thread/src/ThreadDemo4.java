@@ -1,5 +1,6 @@
 public class ThreadDemo4 {
     //典型的线程不安全问题
+    //通过调整代码结构来解决线程不安全问题
     private static int count = 0;
 
     public static void main(String[] args) throws InterruptedException {
