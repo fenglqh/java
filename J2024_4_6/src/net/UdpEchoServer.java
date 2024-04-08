@@ -8,7 +8,7 @@ import java.net.SocketException;
 
 public class UdpEchoServer {
    //进行网络编程，首先得搞个socket对象
-    DatagramSocket socket = null;
+    private DatagramSocket socket = null;
     //构造方法，负责给这个服务指定端口号
     public UdpEchoServer(int port) throws SocketException {
         socket = new DatagramSocket(port);
@@ -41,7 +41,8 @@ public class UdpEchoServer {
 
     }
 
-    private String process(String request) {
+
+    public String process(String request) {
         return request;
     }
 

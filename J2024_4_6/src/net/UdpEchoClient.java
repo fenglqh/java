@@ -6,7 +6,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.Scanner;
-
+//
 public class UdpEchoClient {
     // 客户端也是同样的首先搞个socket
     DatagramSocket socket = null;
@@ -43,7 +43,7 @@ public class UdpEchoClient {
             DatagramPacket responsePacket = new DatagramPacket(new byte[4096], 4096);
             socket.receive(responsePacket);
             // 5. 把响应显示到控制台上
-            String response = new String(responsePacket.getData(), 0, requestPacket.getLength());
+            String response = new String(responsePacket.getData(), 0, responsePacket.getLength());
             System.out.println(response);
 
         }
