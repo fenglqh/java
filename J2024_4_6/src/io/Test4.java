@@ -4,8 +4,12 @@ import java.io.*;
 
 public class Test4 {
     public static void main(String[] args) {
-        try (Writer writer = new FileWriter("./aaa/bbb.txt") ) {
-            writer.w
+        File rootfile = new File("D:/Program Files/Andriod Studio/build.txt");
+        System.out.println(rootfile.getName());
+    }
+    public static void main2(String[] args) {
+        try (Writer writer = new FileWriter("./aaa/bbb.txt", true) ) {
+            writer.write("hhh");
         } catch (IOException e) {
             e.printStackTrace();
         }

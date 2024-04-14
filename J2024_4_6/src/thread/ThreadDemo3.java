@@ -5,12 +5,12 @@ public class ThreadDemo3 {
         BlookingQueue queue = new BlookingQueue();
         Thread t1 = new Thread(() -> {
             try {
-                queue.offer(1);
-                queue.offer(2);
-                queue.offer(3);
-                queue.offer(4);
-                queue.offer(5);
-                queue.offer(6);
+                queue.put(1);
+                queue.put(2);
+                queue.put(3);
+                queue.put(4);
+                queue.put(5);
+                queue.put(6);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -19,7 +19,7 @@ public class ThreadDemo3 {
         Thread t2 = new Thread(() -> {
             try {
                 Thread.sleep(2000);
-                queue.poll();
+                queue.take();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
