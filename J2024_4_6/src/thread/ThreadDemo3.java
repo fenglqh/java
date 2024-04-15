@@ -2,15 +2,15 @@ package thread;
 
 public class ThreadDemo3 {
     public static void main(String[] args) throws InterruptedException {
-        BlookingQueue queue = new BlookingQueue();
+        MyBlookingQueue queue = new MyBlookingQueue();
         Thread t1 = new Thread(() -> {
             try {
-                queue.put(1);
-                queue.put(2);
-                queue.put(3);
-                queue.put(4);
-                queue.put(5);
-                queue.put(6);
+                queue.put("a");
+                queue.put("b");
+                queue.put("c");
+                queue.put("d");
+                queue.put("e");
+                queue.put("f");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
