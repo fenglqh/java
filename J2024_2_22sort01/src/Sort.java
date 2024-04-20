@@ -195,12 +195,14 @@ public class Sort {
         if (start >= end) {
             return;
         }
-        int pivot = partitionHoare(array,start,end);
+        int pivot = partitionHoare2(array,start,end);
         Hoare(array,start,pivot-1);
         Hoare(array,pivot+1,end);
     }
     /**
-     * hoare进行分组
+     * hoare进行分组，这个根据自己理解写的霍尔法，
+     * 遇到了一些问题，两个数在中间相遇的时候，我因为是先左后右所以，写了个if语句来进行处理，
+     * 我的left是在start后一个位置，所以要特意的处理一下start和end的非法问题
      * @param array
      * @param start
      * @param end
@@ -211,20 +213,22 @@ public class Sort {
             return -1;
         }
         int left = start+1;
+//        int left = start;
         int right = end;
-        int privo = array[start];
+        int pivot = array[start];
         while (left < right) {
             //在小范围里面还要重新判断一下范围
-            while (left<right && array[left] <= privo) {
+            //为啥老师的代码要从右边先开始
+            while (left<right && array[left] <= pivot) {
                 left++;
             }
-            while (left<right && array[right] >= privo) {
+            while (left<right && array[right] >= pivot) {
                 right--;
             }
             swap(array,right,left);
         }
         //注意点，等号取不取
-        if (left >= 1 && array[left] >= privo) {
+        if (left >= 1 && array[left] >= pivot) {
             swap(array,start,--left);
         } else {
             swap(array,start,left);
@@ -232,13 +236,95 @@ public class Sort {
         return left;
     }
 
+    /**
+     * 霍尔法代码的改进
+     * @param array
+     * @param start
+     * @param end
+     */
+    public static int partitionHoare2(int[] array,int start,int end) {
+        int left = start;
+        int right = end;
+        int temp = array[start];
+        while (left < right) {
+            while (left < right && array[right] >= temp) {
+                right--;
+            }
+            while (left < right && array[left] <= temp) {
+                left++;
+            }
+            swap(array,right,left);
+        }
+        swap(array,start,left);
+        return left;
+    }
 
     /**
      * 挖坑法
      * @param array
      */
     public static void quickHole(int[] array) {
-        
+        Hole(array,0,array.length-1);
+    }
+
+    private static void Hole(int[] array, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int pivot = partitionHole(array,start,end);
+        Hoare(array,start,pivot-1);
+        Hoare(array,pivot+1,end);
+    }
+
+    private static int partitionHole(int[] array, int start, int end) {
+        int left = start;
+        int right = end;
+        int temp = array[start];
+        while (left < right) {
+//            array[start] = left;
+//            start = left;
+            while (left < right && array[right] >= temp) {
+                right--;
+            }
+//            array[start] = array[right];
+            array[left] = array[right];
+//            start = right;
+            while (left < right && array[left] <= temp) {
+                left++;
+            }
+            array[right] = array[left];
+        }
+        array[left] = temp;
+        return left;
+    }
+
+    /**
+     * 快速排序的双指针法
+     * @param array
+     */
+    public static void quickDoublePointer(int[] array) {
+        pointer(array,0,array.length-1);
+    }
+    public static void pointer(int[] array, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int pivot = partitionPointer(array,start,end);
+        pointer(array,start,pivot-1);
+        pointer(array,pivot+1,end);
+
+    }
+    public static int partitionPointer(int[] array, int start, int end) {
+        int prev = start;
+        int cur = start+1;
+        while (cur <= end) {
+            if (array[cur] < array[start] && array[++prev] != array[cur]){
+                swap(array,cur,prev);
+            }
+            cur++;
+        }
+        swap(array,start,prev);
+        return prev;
     }
 
     public static void quickSortNor(int[] array) {
