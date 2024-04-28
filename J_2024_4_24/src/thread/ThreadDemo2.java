@@ -2,20 +2,13 @@ package thread;
 
 import java.util.Timer;
 import java.util.TimerTask;
-class Test implements Runnable {
-    @Override
-    public void run() {
-        System.out.println("Hhh");
-    }
-}
-class Test02 {
-//    private Test t = null;
-    public Test02(ThreadDemo1 t) {
-        t.run();
-    }
-}
+
 public class ThreadDemo2 {
     public static void main(String[] args) {
+        Timer timer = new Timer();
+
+    }
+    public static void main1(String[] args) {
 //        Test02 t = new Test02(()->{
 //
 //        });
@@ -27,7 +20,7 @@ public class ThreadDemo2 {
 //           }
 //       });
     }
-    public static void main1(String[] args) {
+    public static void main2(String[] args) {
         System.out.println("hhhhh");
 
 //        ThreadDemo1 t = new ThreadDemo1();
