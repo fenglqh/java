@@ -57,8 +57,10 @@ class MockTimer {
     // 向任务队列中添加任务, delay是相对时间
     public void schedule(MockTimeTask task, long delay) {
         //time是ms级别的时间戳，这样更方便比较是不是到时间了
-        task.time = System.currentTimeMillis() + delay;
-        queue.add(task);
+        synchronized (locker) {
+            task.time = System.currentTimeMillis() + delay;
+            queue.add(task);
+        }
     }
 }
 public class ThreadDemo3 {
