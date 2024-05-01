@@ -13,8 +13,8 @@ abstract class MockTimeTask implements Comparable<MockTimeTask>{
     }
     @Override
     public int compareTo(MockTimeTask o) {
-        return (int)(o.time - this.time);
-//        return (int)(this.time - o.time);不确定顺序就试一试
+//        return (int)(o.time - this.time);不确定顺序就试一试
+        return (int)(this.time - o.time);
     }
 }
 
@@ -34,9 +34,13 @@ class MockTimer {
         this.thread = new Thread(() -> {
             while (true) {
                 synchronized (locker) {
-                    // 如果任务对列为空则什么也不干
-                    if (queue.isEmpty()) {
-                        continue;
+                    // 如果任务对列为空则等待，等向队列中加入元素的时候再唤醒
+                    while (queue.isEmpty()) {//这里可以写if，但是养成好习惯，每次被唤醒就是“沧海桑田”，还是再判断一下
+                        try {
+                            locker.wait();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     MockTimeTask task = queue.peek();
                     // 当前时间
@@ -46,6 +50,14 @@ class MockTimer {
                         task.run();
                         queue.poll();
                     } else {
+                        // 时间没到就等待
+                     //Thread.sleep(task.time - currentTime);
+                     // 这里不可以用sleep，因为如果有新增任务，等待时间更短 ，就可能会错过这个任务要执行的时间
+                        try {
+                            locker.wait(task.time - currentTime);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
 
                     }
                 }
@@ -60,6 +72,7 @@ class MockTimer {
         synchronized (locker) {
             task.time = System.currentTimeMillis() + delay;
             queue.add(task);
+            locker.notify();
         }
     }
 }

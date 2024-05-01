@@ -5,6 +5,23 @@ import java.util.List;
 
 public class TestOj2 {
     public static void main(String[] args) {
+        int[] a = {1,4};
+        int b = 2;
+        System.out.println(findPoisonedDuration(a, b));
+    }
+    public static int findPoisonedDuration(int[] timeSeries, int duration) {
+        int ret = 0;
+        int a = timeSeries[0], b = 0;
+        for (int i = 1; i < timeSeries.length; i++) {
+            b = timeSeries[i];
+            if ((b - a) < duration) ret += (b - a);
+            else ret += duration;
+            a = timeSeries[i];
+        }
+        ret += duration;
+        return ret;
+    }
+    public static void main1(String[] args) {
 //        试一下字符串替换
         String a = "ab?c?";
 //        a = a.replace('?','a');
