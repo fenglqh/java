@@ -4,6 +4,40 @@ import java.util.*;
 
 public class TestOj4 {
     public static void main(String[] args) {
+        String s = "a##c";
+        String t = "#a#c";
+        System.out.println(backspaceCompare(s, t));
+    }
+    public static boolean backspaceCompare(String ss, String tt) {
+        int s = ss.length() - 1, t = tt.length() - 1;
+        while(s >= 0 && t >= 0) {
+            if (ss.charAt(s) != tt.charAt(t)) return false;
+            // 处理连续两个都是#的情况
+
+            if (ss.charAt(s) != '#') {
+                s--;
+                while (s >= 0 && ss.charAt(s) == '#') s -= 2;
+            }
+            else {
+                s -= 2;
+                while (ss.charAt(s + 1) == '#') s -= 2;
+                while (s >= 0 && ss.charAt(s) == '#') s -= 2;
+            }
+
+            if (tt.charAt(t) != '#') {
+                t--;
+                while (t >= 0 && tt.charAt(t) == '#') t -= 2;
+            }
+            else {
+                t -= 2;
+                while (tt.charAt(t + 1) == '#') t -= 2;
+                while (t >= 0 && tt.charAt(t) == '#') t -= 2;
+            }
+        }
+        if (s != t) return false;
+        return true;
+    }
+    public static void main3(String[] args) {
 //        int[] n = {-74,48,-20,2,10,-84,-5,-9,11,-24,-91,2,-71,64,
 //                63,80,28,-30,-58,-11,-44,-87,-22,54,-74,-10,-55
 //                ,-28,-46,29,10,50,-72,34,26,25,8,51,13,30,35,-8,50,
