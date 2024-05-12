@@ -71,8 +71,8 @@ public class TestOj4 {
 //    }
     private static void deal(int[] nums, int start, int end) {
         if (start >= end) return;
-//        int key = nums[start + (end - start) / 2];
-        int key = nums[new Random().nextInt(end - start + 1) + start];
+        int key = nums[start + (end - start) / 2];
+
         int left =  start - 1,right = end+1;
         for (int i = start; i < right; ) {
             if (nums[i] == key) i++;

@@ -81,11 +81,6 @@ public class ThreadDemo4 {
 
 
 
-
-
-
-
-
     }
     public static void main1(String[] args) {
 //        ExecutorService executorService = Executors.newFixedThreadPool(2);
