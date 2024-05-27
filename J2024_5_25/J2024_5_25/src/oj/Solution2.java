@@ -12,10 +12,20 @@ public class Solution2 {
         HashMap<Integer, Integer> hm = new HashMap<>();
         hm.put(1, 2);
         hm.containsKey(1);
-        hm.get()
+        hm.get(1);
 
     }
     public int[] test() {
         return new int[]{1,2,3,4,5,6,7,8,9};
+    }
+    public static boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashMap<Integer,Integer> h = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (h.containsKey(nums[i]) && Math.abs(h.get(nums[i]) - i) <= k) {
+                return true;
+            }
+            h.put(nums[i],i);
+        }
+        return false;
     }
 }
