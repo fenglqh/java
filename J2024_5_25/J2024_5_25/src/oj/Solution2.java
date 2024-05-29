@@ -1,7 +1,6 @@
 package oj;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 public class Solution2 {
     public static void main(String[] args) {
@@ -13,6 +12,15 @@ public class Solution2 {
         hm.put(1, 2);
         hm.containsKey(1);
         hm.get(1);
+        List l = new ArrayList<>();
+        String s = "ecf";
+        char[] charArray = s.toCharArray();
+        Arrays.sort(charArray);
+        System.out.println(charArray);
+        hm.forEach((k,v)->{
+            System.out.println(k);
+            System.out.println(v);
+        });
 
     }
     public int[] test() {
