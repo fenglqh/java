@@ -6,10 +6,70 @@ import java.util.Stack;
 
 public class Solution3 {
 
-    public static void main3(String[] args) {
-        String a = "11";
-        String b = "1";
-        System.out.println(addBinary(a, b));
+    public static void main(String[] args) {
+        char[] c = {'a', 'b', 'c'};
+        String s = new String(c, 0, 0);// 左闭右开
+        System.out.println(s);
+    }
+    public static void main6(String[] args) {
+        String a = "y#fo##f";
+        String b = "y#f#o##f";
+        System.out.println(backspaceCompare(a, b));
+    }
+    public static boolean backspaceCompare(String s, String t) {
+        Stack st1 = new Stack(), st2 = new Stack();
+        int m = s.length(), n = t.length();
+        for (int i = 0; i < m; i++) {
+            if (s.charAt(i) == '#' && !st1.isEmpty()) st1.pop();
+            if (s.charAt(i) != '#') st1.push(s.charAt(i));
+        }
+        for (int i = 0; i < n; i++) {
+            if (t.charAt(i) == '#' && !st2.isEmpty()) st2.pop();
+            if (t.charAt(i) != '#') st2.push(t.charAt(i));
+        }
+        if (st1.size() != st2.size()) return false;
+        while (!st1.isEmpty() && !st2.isEmpty()) {
+            if (st1.pop() != st2.pop()) return false;
+        }
+        return true;
+    }
+    public static void main5(String[] args) {
+        String a = "123";
+        String b = "0";
+        Stack stack = new Stack();
+
+        System.out.println(multiply(a, b));
+    }
+    public static String multiply(String num1, String num2) {
+        // 在暴力模拟上的优化： 无进位相乘然后相加，最后处理进位
+        int m = num1.length(), n = num2.length();
+        int[] tmp = new int[m + n - 1];
+        for (int i = m - 1; i >= 0 ; i--) {
+            for (int j = n - 1; j >= 0 ; j--) {
+                tmp[i + j] += (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+            }
+        }
+        StringBuffer sb = new StringBuffer();
+        int t = 0;
+        for (int k = tmp.length - 1; k >= 0; k--) {
+            t += tmp[k];
+            sb.append(t % 10);
+            t = t / 10;
+        }
+        if (t != 0) sb.append(t);
+        sb.reverse();
+
+        // 处理0多情况
+        int i = 0;
+        while (sb.charAt(i) == '0' && i < tmp.length - 1) i++;
+
+        return sb.substring(i);
+    }
+    public static void main4(String[] args) {
+        String a = "13";
+        StringBuffer sb = new StringBuffer(a);
+        String substring = sb.substring(0);
+        System.out.println(substring);
     }
     public static String addBinary(String a, String b) {
         // 高精度求和 本质是模拟
@@ -34,7 +94,7 @@ public class Solution3 {
         return ret;
 
     }
-    public static void main(String[] args) {
+    public static void main3(String[] args) {
         String a = "33";
         int c = a.charAt(0) - '0';
         int d = a.charAt(1) - '0';
